@@ -62,33 +62,43 @@ void scanVec(vector<int>& v, int size) { for (int i = 0; i < size; i++) { int x;
 
 /*-----------------------------------------------------------------------------------------------------------*/
 
-int maxElem(int arr[][3],int row,int col){
-    
-    int maxi = INT_MIN;
-
-    for(int i=0;i<row;i++){
-        for(int j=0;j<col;j++){
-            if(arr[i][j]>maxi){
-                maxi = arr[i][j];
-            }
-        }
-    }
-    return maxi;
-}
 
 int main()
 {
     grumpyonion();
 
-    int arr[3][3]={
-        {2,5,6},
-        {8,89,34},
-        {12,67,31}
-    };
+    vector<int> v = {10,3,40,20,50,80,70};
 
-    int maxi = maxElem(arr,3,3);
+    int target = 40;
 
-    cout<<maxi<<endl;
+    int start = 0;
+    int end = v.size()-1;
+    int idx = -1;
+
+    while(start<=end){
+        int mid = start + (end - start)/2;
+
+        if(target == v[mid]){
+            idx = mid;
+            break;
+        }
+        else if( mid-1 > 0 && target == v[mid - 1]){
+            idx = mid - 1;
+            break;
+        }
+        else if(mid +1 < v.size() && target == v[mid + 1]){
+            idx = mid + 1;
+            break;
+        }
+        else if(target > v[mid]){
+            start = mid + 2;
+        }
+        else{
+            end = mid - 2;
+        }
+    }
+
+    cout<< idx <<endl;
 
 return 0;
 }

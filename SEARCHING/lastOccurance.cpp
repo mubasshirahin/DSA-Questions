@@ -61,30 +61,52 @@ void scanVec(vector<int>& v, int size) { for (int i = 0; i < size; i++) { int x;
 
 
 /*-----------------------------------------------------------------------------------------------------------*/
-bool searchElem(int arr[][3], int target,int row,int col){
-    for(int i=0;i<row;i++){
-        for(int j=0;j<col;j++){
-            if(arr[i][j]== target){
-                return true;
-            }
-        }
-    }
-    return false;
-}
+
+
 
 int main()
 {
     grumpyonion();
 
-    int arr[3][3] = {
-        {1,2,3},
-        {4,5,6},
-        {7,8,9}
-    };
+    vector<int> v = {1,3,3,3,3,8,9,13,15};
 
-    cout<<searchElem(arr,8,3,3);
+    int start = 0;
+    int end = v.size()-1;
+    int target = 3;
+
+    int idx = -1;
+
+    while(start<=end){
+        int mid = start + (end-start)/2;
+        
+        if(v[mid]==target){
+            idx = mid;
+            start = mid + 1;
+        }
+        else if(v[mid]>target){
+            end = mid - 1;
+        }
+        else{
+            start = mid + 1;
+        }
+    }
+
+    cout<<idx<<endl;
+
+    //1 1 3 3 3 4 5 {target = 3}
+    //0 1 2 3 4 5 6
+
+    /*
+    3 == 3
+    1 1 3 
+    0 1 2
+
+    1 < 3
 
 
+
+    
+    */
 
 return 0;
 }

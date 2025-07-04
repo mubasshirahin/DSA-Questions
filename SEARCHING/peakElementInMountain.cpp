@@ -67,29 +67,45 @@ int main()
 {
     grumpyonion();
 
-    vector<vector<int>> v(2,vector<int>(2,0));
-    vvi arr;
+    vector<int> v = {1,4,10,15,3,2,1};
 
-    // for(int i=0;i<2;i++){
-    //     for(int j=0;j<2;j++){
-    //         cin>>v[i][j];
-    //     }
-    // }
+    int start = 0;
+    int end = v.size()-1;
+    int maxi = -1;
 
-    for(int i=0;i<2;i++){
-        vi row;
-        for(int j=0;j<3;j++){
-            int x;
-            cin>>x;
-            row.push_back(x);
+    while(start<end){
+        int mid = start + (end-start)/2;
+
+        if(v[mid]<v[mid+1]){
+            start = mid + 1;            
         }
-        arr.push_back(row);
+        else if(v[mid]>v[mid+1]){
+            end = mid;
+        }
     }
 
-    for(int i=0;i<arr.size();i++){
-        for(int j=0;j<arr[i].size();j++){
-            cout<<arr[i][j]<<" ";
-        }cout<<endl;
-    }
+    cout<<start<<endl;
+
+    //1 4 10 5 3 2 1
+    //0 1  2 3 4 5 6
+
+
+    /*
+    5 > 3
+    
+    1 4 10 5
+    0 1 2  3
+
+    4 < 10
+
+    10 5
+    0 1
+
+    10>5
+    10
+
+    */
+    
+
 return 0;
 }

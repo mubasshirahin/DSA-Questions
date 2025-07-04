@@ -62,32 +62,35 @@ void scanVec(vector<int>& v, int size) { for (int i = 0; i < size; i++) { int x;
 
 /*-----------------------------------------------------------------------------------------------------------*/
 
-void transpose(int arr[][3], int row,int col){
-    for(int i=0;i<row;i++){
-        for(int j=i+1;j<col;j++){
-            swap(arr[i][j],arr[j][i]);
-        }
-    }
-}
 
 int main()
 {
     grumpyonion();
 
-    int arr[3][3] = {
-        {1,2,3},
-        {4,5,6},
-        {7,8,9}
-    };
+    vector<int> v = {7,6,5,4,3,2,1};
 
-    transpose(arr,3,3);
+    int start = 0;
+    int end = v.size()-1;
 
-    for(int i=0;i<3;i++){
-        for(int j=0;j<3;j++){
-            cout<<arr[i][j]<<" ";
-        }cout<<endl;
+    int ans = -1;
+    int target = 7;
+
+    while(start<=end){
+        int mid = start + (end - start) / 2;
+
+        if(v[mid]==target){
+            ans = mid;
+            break;
+        }
+        else if(v[mid]<target){
+            end = mid - 1;
+        }
+        else{
+            start = mid + 1;
+        }
     }
 
+    cout<<ans<<endl;
 
 return 0;
 }
